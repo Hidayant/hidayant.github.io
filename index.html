@@ -307,72 +307,7 @@
                         </div>
                     </div>
                 </details>
-
-                <!-- MIKROTIK GUIDE -->
-                <details class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all">
-                    <summary class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors">
-                        <div class="flex items-center gap-3.5">
-                            <div class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-semibold text-zinc-950 leading-snug">Konfigurasi Dasar Mikrotik dari Nol Sampai Online</h3>
-                                <div class="flex gap-1.5 mt-0.5">
-                                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Mikrotik</span>
-                                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Router</span>
-                                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Setup</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                        </div>
-                    </summary>
-                    <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
-                        <ul class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700">
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">1</span>
-                                <b>Koneksi Fisik & Login Winbox:</b> Hubungkan kabel modem ke <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">ether1</code> dan PC ke <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">ether2</code>. Login via Winbox menggunakan MAC Address, user <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">admin</code> tanpa password. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">02:50</span>
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">2</span>
-                                <b>Identitas & Penamaan:</b> Ganti nama router di <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">System > Identity</code>. Beri nama interface pada menu <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Interfaces</code> (misal: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">ether1-Internet</code>, <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">ether2-LAN</code>). <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">05:49</span>
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">3</span>
-                                <b>Konfigurasi DNS:</b> Buka <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">IP > DNS</code>, isi Server DNS: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">8.8.8.8</code> dan <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">8.8.4.4</code>. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">07:56</span>
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">4</span>
-                                <b>Terima IP ISP (DHCP Client):</b> Buka <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">IP > DHCP Client</code>, buat client baru pada <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">ether1-Internet</code>. Uji koneksi via terminal: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">ping google.com</code>. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">08:38</span>
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">5</span>
-                                <b>Firewall NAT:</b> Masuk <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">IP > Firewall > NAT</code>. Buat rule baru: Chain <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">srcnat</code>, Out Interface <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">ether1-Internet</code>, Action pilih <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">masquerade</code>. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">09:44</span>
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">6</span>
-                                <b>Tetapkan IP Segmen Lokal:</b> Masuk <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">IP > Addresses</code>, beri IP lokal (misal <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">ether2-LAN</code>: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">10.10.10.1/24</code>). <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">11:10</span>
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">7</span>
-                                <b>DHCP Server Client:</b> Buka <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">IP > DHCP Server</code>, klik tombol <b>DHCP Setup</b> pada interface lokal hingga selesai. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">13:13</span>
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">8</span>
-                                <b>Amankan Akun:</b> Masuk ke <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">System > Users</code>, ganti password default admin. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">15:24</span>
-                            </li>
-                        </ul>
-                        <div class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between">
-                            <span class="font-mono text-[11px] text-zinc-500">SOURCE: GAPTEK AMATIR</span>
-                            <a class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold text-zinc-950 border border-zinc-200 bg-white px-3 py-1.5 rounded hover:bg-zinc-950 hover:text-white transition-all" href="https://youtu.be/WKrRWSCXo38" target="_blank" rel="noopener noreferrer">
-                                <span>Watch Video</span>
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                </details>
-
+               
                 <!-- WINDOWS SERVER FILE SHARING -->
                 <details class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all">
                     <summary class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors">
