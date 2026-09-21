@@ -364,6 +364,66 @@
                         </div>
                     </div>
                 </details>
+                <!-- ACTIVE DIRECTORY DOMAIN CONTROLLER GUIDE -->
+<details class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all">
+    <summary class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors">
+        <div class="flex items-center gap-3.5">
+            <div class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold text-zinc-950 leading-snug">Konfigurasi Active Directory Domain Controller (AD DS)</h3>
+                <div class="flex gap-1.5 mt-0.5">
+                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Win-Server</span>
+                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Active-Directory</span>
+                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Sysadmin</span>
+                </div>
+            </div>
+        </div>
+        <div class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+    </summary>
+    <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
+        <ul class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700">
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">1</span>
+                <b>Tetapkan IP Statik & Loopback DNS:</b> Server domain controller wajib menggunakan IP Statik. Masuk ke adapter network, atur Preferred DNS ke IP loopback <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">127.0.0.1</code> (karena server ini yang akan menjadi DNS server lokal). <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">04:30</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">2</span>
+                <b>Ubah Hostname (Computer Name):</b> Buka <i>Server Manager > Local Server</i>, ubah nama komputer agar sesuai standar server (contoh: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">JKT-DC1</code>), lalu restart Windows Server. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">05:25</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">3</span>
+                <b>Install Role Active Directory Domain Services:</b> Buka <i>Server Manager > Manage > Add Roles and Features</i>. Pilih <b>Role-based or feature-based installation</b>, lalu centang peran <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Active Directory Domain Services</code> (AD DS) dan selesaikan instalasi. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">07:51</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">4</span>
+                <b>Promote Server to Domain Controller:</b> Klik ikon bendera notifikasi kuning di kanan atas, pilih <b>Promote this server to a domain controller</b>. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">11:05</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">5</span>
+                <b>Deployment Configuration (New Forest):</b> Pilih opsi <b>Add a new forest</b>, kemudian masukkan nama Root Domain (contoh: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">perusahaan.local</code> atau <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">suka-suka.com</code>). <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">11:42</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">6</span>
+                <b>Tentukan Functional Level &amp; Password DSRM:</b> Atur Forest/Domain Functional Level ke versi Windows Server yang sesuai, lalu buat password pemulihan <b>DSRM</b> (<i>Directory Services Restore Mode</i>). Klik Next pada NetBIOS name hingga tahap validasi prasyarat. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">13:28</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">7</span>
+                <b>Instalasi &amp; Restart Otomatis:</b> Klik tombol <b>Install</b>. Setelah selesai, server akan reboot otomatis. Saat masuk ke halaman login, akun administrator berubah format menjadi <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">DOMAIN\Administrator</code> menandakan Domain Controller telah aktif. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">17:44</span>
+            </li>
+        </ul>
+        <div class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between">
+            <span class="font-mono text-[11px] text-zinc-500">SOURCE: MIRZA RATRIADI</span>
+            <a class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold text-zinc-950 border border-zinc-200 bg-white px-3 py-1.5 rounded hover:bg-zinc-950 hover:text-white transition-all" href="https://youtu.be/1H8n-EjyHuo" target="_blank" rel="noopener noreferrer">
+                <span>Watch Video</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            </a>
+        </div>
+    </div>
+</details>
 
             </div>
         </section>
