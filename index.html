@@ -258,6 +258,160 @@
                         <code id="cmd-aso">curl -L keyms.id/aso -o aso.cmd &amp; aso.cmd</code>
                     </div>
                 </div>
+                <!-- FIX 1: REGEDIT METHOD (UNAUTHENTICATED GUEST ACCESS) -->
+<details class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all">
+    <summary class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors">
+        <div class="flex items-center gap-3.5">
+            <div class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold text-zinc-950 leading-snug">Fix "Organization's Security Policies Block Unauthenticated Guest Access" (Via Regedit)</h3>
+                <div class="flex gap-1.5 mt-0.5">
+                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Win-10</span>
+                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Regedit</span>
+                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">SMB-Share</span>
+                </div>
+            </div>
+        </div>
+        <div class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+    </summary>
+    <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
+        <ul class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700">
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">1</span>
+                <b>Tes Ping:</b> Buka CMD, jalankan <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">ping [IP_Tujuan]</code> untuk memastikan fisik jaringan terhubung dan me-reply. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">01:07</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">2</span>
+                <b>Buka Regedit:</b> Tekan <kbd class="font-mono text-xs bg-white border border-zinc-300 px-1.5 py-0.5 rounded">Win + R</kbd>, ketik <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">regedit</code>, lalu Enter. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">01:35</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">3</span>
+                <b>Akses Direktori LanmanWorkstation:</b> Buka path:<br>
+                <code class="font-mono text-xs bg-zinc-200/70 px-1.5 py-0.5 rounded block mt-1 w-fit">HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters</code> <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">02:05</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">4</span>
+                <b>Buat Nilai DWORD:</b> Klik kanan di ruang kosong panel kanan &gt; <b>New &gt; DWORD (32-bit) Value</b> &gt; namai <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">AllowInsecureGuestAuth</code>. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">04:32</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">5</span>
+                <b>Set Nilai Value:</b> Klik dua kali nilai tersebut, ganti <b>Value data</b> dari <b>0</b> ke <b>1</b>, lalu klik OK. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">06:05</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">6</span>
+                <b>Pengujian:</b> Panggil kembali alamat share (contoh: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">\\192.168.x.x</code>). Folder atau printer share langsung terbuka normal. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">06:35</span>
+            </li>
+        </ul>
+        <div class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between">
+            <span class="font-mono text-[11px] text-zinc-500">SOURCE: TIPSKOMINFO</span>
+            <span class="font-mono text-[11px] text-zinc-400">REGEDIT FIX</span>
+        </div>
+    </div>
+</details>
+
+<!-- FIX 2: GPEDIT METHOD (INSECURE GUEST LOGONS) -->
+<details class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all">
+    <summary class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors">
+        <div class="flex items-center gap-3.5">
+            <div class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold text-zinc-950 leading-snug">Fix "Organization's Security Policies Block Guest Access" (Via Gpedit)</h3>
+                <div class="flex gap-1.5 mt-0.5">
+                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Win-10/11-Pro</span>
+                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Gpedit</span>
+                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Policy</span>
+                </div>
+            </div>
+        </div>
+        <div class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+    </summary>
+    <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
+        <ul class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700">
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">1</span>
+                <b>Buka Group Policy Editor:</b> Tekan <kbd class="font-mono text-xs bg-white border border-zinc-300 px-1.5 py-0.5 rounded">Win + R</kbd>, ketik <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">gpedit.msc</code>, lalu Enter. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">02:35</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">2</span>
+                <b>Navigasi Kebijakan Jaringan:</b> Masuk ke hirarki folder:<br>
+                <code class="font-mono text-xs bg-zinc-200/70 px-1.5 py-0.5 rounded block mt-1 w-fit">Computer Configuration &gt; Administrative Templates &gt; Network &gt; Lanman Workstation</code> <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">03:21</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">3</span>
+                <b>Aktifkan Insecure Guest Logons:</b> Di panel kanan, klik ganda kebijakan <b>Enable insecure guest logons</b>. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">04:01</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">4</span>
+                <b>Ubah Status Kebijakan:</b> Ubah opsi dari <i>Not Configured / Disabled</i> ke <b>Enabled</b>, lalu klik <b>Apply</b> dan <b>OK</b>. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">04:24</span>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">5</span>
+                <b>Uji Koneksi:</b> Buka Run (<kbd class="font-mono text-xs bg-white border border-zinc-300 px-1.5 py-0.5 rounded">Win + R</kbd>) dan panggil kembali folder sharing (misal: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">\\192.168.0.204</code>). <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">04:37</span>
+            </li>
+        </ul>
+        <div class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between">
+            <span class="font-mono text-[11px] text-zinc-500">SOURCE: SEBATAS TOOLMAN</span>
+            <span class="font-mono text-[11px] text-zinc-400">GPEDIT FIX</span>
+        </div>
+    </div>
+</details>
+
+<!-- FIX 3: POWERSHELL SMB SIGNATURE (AN EXTENDED ERROR HAS OCCURRED) -->
+<details class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all">
+    <summary class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors">
+        <div class="flex items-center gap-3.5">
+            <div class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+            </div>
+            <div>
+                <h3 class="text-sm font-semibold text-zinc-950 leading-snug">Fix "An Extended Error Has Occurred" Sharing Folder (Via PowerShell)</h3>
+                <div class="flex gap-1.5 mt-0.5">
+                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Win-10/11</span>
+                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">PowerShell</span>
+                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">SMB-Sign</span>
+                </div>
+            </div>
+        </div>
+        <div class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+    </summary>
+    <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
+        <ul class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700">
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">1</span>
+                <b>Buka PowerShell As Admin:</b> Tekan <kbd class="font-mono text-xs bg-white border border-zinc-300 px-1.5 py-0.5 rounded">Win + X</kbd>, pilih <b>Windows Terminal (Admin)</b> atau cari <i>PowerShell</i> lalu klik kanan <i>Run as administrator</i>.
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">2</span>
+                <b>Nonaktifkan Kewajiban Security Signature:</b> Ketik perintah berikut lalu tekan Enter:
+                <div class="mt-2 p-2.5 bg-zinc-950 text-zinc-100 font-mono text-xs rounded border border-zinc-800 flex items-center justify-between gap-2 overflow-x-auto">
+                    <code>Set-SmbClientConfiguration -RequireSecuritySignature $false</code>
+                </div>
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">3</span>
+                <b>Konfirmasi Eksekusi:</b> Saat muncul konfirmasi perubahan pengaturan, tekan <kbd class="font-mono text-xs bg-white border border-zinc-300 px-1.5 py-0.5 rounded">Y</kbd> lalu tekan Enter.
+            </li>
+            <li class="relative">
+                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">4</span>
+                <b>Pengujian &amp; Restart:</b> Tutup PowerShell dan coba buka kembali shared folder. Jika masih belum bisa terbuka, lakukan restart komputer klien sekali.
+            </li>
+        </ul>
+        <div class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between">
+            <span class="font-mono text-[11px] text-zinc-500">SOURCE: SOFTTRICK</span>
+            <span class="font-mono text-[11px] text-zinc-400">POWERSHELL SMB</span>
+        </div>
+    </div>
+</details>
             </div>
         </section>
 
