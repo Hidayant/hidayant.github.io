@@ -1,684 +1,1767 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agung's IT Toolbox</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'Helvetica Neue', 'Arial', 'sans-serif'],
-                        mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: [
+                "-apple-system",
+                "BlinkMacSystemFont",
+                "Segoe UI",
+                "Roboto",
+                "Helvetica Neue",
+                "Arial",
+                "sans-serif",
+              ],
+              mono: [
+                "ui-monospace",
+                "SFMono-Regular",
+                "Menlo",
+                "Monaco",
+                "Consolas",
+                "monospace",
+              ],
+            },
+          },
+        },
+      };
     </script>
-</head>
-<body class="bg-white text-zinc-950 font-sans antialiased min-h-screen">
-
+  </head>
+  <body class="bg-white text-zinc-950 font-sans antialiased min-h-screen">
     <!-- HEADER -->
     <header class="border-b border-zinc-200 bg-white py-10 px-6">
-        <div class="max-w-4xl mx-auto">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3">
-                <span class="inline-flex items-center gap-1.5 font-mono text-[11px] px-2 py-0.5 border border-zinc-200 rounded-full text-zinc-500 w-fit">
-                    <span class="w-1.5 h-1.5 rounded-full bg-zinc-950"></span> LOCAL REPOSITORY
-                </span>
-                <span class="font-mono text-[11px] text-zinc-500">v2.4.0</span>
-            </div>
-            <h1 class="text-3xl font-extrabold tracking-tight uppercase">Agung's IT Toolbox</h1>
-            <p class="text-sm text-zinc-500 mt-1">Quick-reference registry for deployment binaries, utilities, cheatsheets & PowerShell routines.</p>
+      <div class="max-w-4xl mx-auto">
+        <div
+          class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-3"
+        >
+          <span
+            class="inline-flex items-center gap-1.5 font-mono text-[11px] px-2 py-0.5 border border-zinc-200 rounded-full text-zinc-500 w-fit"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-zinc-950"></span> LOCAL
+            REPOSITORY
+          </span>
+          <span class="font-mono text-[11px] text-zinc-500">v2.4.0</span>
         </div>
+        <h1 class="text-3xl font-extrabold tracking-tight uppercase">
+          Agung's IT Toolbox
+        </h1>
+        <p class="text-sm text-zinc-500 mt-1">
+          Quick-reference registry for deployment binaries, utilities,
+          cheatsheets & PowerShell routines.
+        </p>
+      </div>
     </header>
 
     <!-- STICKY NAVBAR -->
-    <nav class="sticky top-0 z-50 border-b border-zinc-200 bg-white/90 backdrop-blur-md">
-        <div class="max-w-4xl mx-auto px-6 flex gap-7 text-[13px] font-semibold">
-            <a href="#downloads" class="py-3.5 border-b-2 border-zinc-950 text-zinc-950">Downloads</a>
-            <a href="#commands" class="py-3.5 border-b-2 border-transparent text-zinc-500 hover:text-zinc-950 hover:border-zinc-950 transition-colors">Commands</a>
-            <a href="#guides" class="py-3.5 border-b-2 border-transparent text-zinc-500 hover:text-zinc-950 hover:border-zinc-950 transition-colors">Guides</a>
-        </div>
+    <nav
+      class="sticky top-0 z-50 border-b border-zinc-200 bg-white/90 backdrop-blur-md"
+    >
+      <div class="max-w-4xl mx-auto px-6 flex gap-7 text-[13px] font-semibold">
+        <a
+          href="#downloads"
+          class="py-3.5 border-b-2 border-zinc-950 text-zinc-950"
+          >Downloads</a
+        >
+        <a
+          href="#commands"
+          class="py-3.5 border-b-2 border-transparent text-zinc-500 hover:text-zinc-950 hover:border-zinc-950 transition-colors"
+          >Commands</a
+        >
+        <a
+          href="#guides"
+          class="py-3.5 border-b-2 border-transparent text-zinc-500 hover:text-zinc-950 hover:border-zinc-950 transition-colors"
+          >Guides</a
+        >
+      </div>
     </nav>
 
     <!-- MAIN CONTENT -->
     <main class="max-w-4xl mx-auto px-6 py-10 pb-20 space-y-14">
+      <!-- SEARCH WRAPPER -->
+      <div class="relative">
+        <svg
+          class="absolute left-3.5 top-1/2 -translate-y-1/2 stroke-zinc-400"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input
+          type="text"
+          id="searchInput"
+          class="w-full pl-10 pr-10 py-3 bg-white border border-zinc-200 rounded-lg text-sm text-zinc-950 placeholder-zinc-400 focus:outline-none focus:border-zinc-950 focus:ring-1 focus:ring-zinc-950 transition-all shadow-sm"
+          placeholder="Search resources, commands, or guides..."
+          onkeyup="filterTools()"
+        />
+        <span
+          class="hidden sm:inline absolute right-3 top-1/2 -translate-y-1/2 font-mono text-[11px] bg-zinc-100 border border-zinc-200 px-1.5 py-0.5 rounded text-zinc-500 pointer-events-none"
+          >/</span
+        >
+      </div>
 
-        <!-- SEARCH WRAPPER -->
-        <div class="relative">
-            <svg class="absolute left-3.5 top-1/2 -translate-y-1/2 stroke-zinc-400" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="11" cy="11" r="8"></circle>
-                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-            </svg>
-            <input type="text" id="searchInput" class="w-full pl-10 pr-10 py-3 bg-white border border-zinc-200 rounded-lg text-sm text-zinc-950 placeholder-zinc-400 focus:outline-none focus:border-zinc-950 focus:ring-1 focus:ring-zinc-950 transition-all shadow-sm" placeholder="Search resources, commands, or guides..." onkeyup="filterTools()">
-            <span class="hidden sm:inline absolute right-3 top-1/2 -translate-y-1/2 font-mono text-[11px] bg-zinc-100 border border-zinc-200 px-1.5 py-0.5 rounded text-zinc-500 pointer-events-none">/</span>
+      <!-- DOWNLOADS SECTION -->
+      <section id="downloads">
+        <div class="flex items-center justify-between mb-4">
+          <h2
+            class="text-xs font-bold uppercase tracking-wider text-zinc-950 flex items-center gap-2"
+          >
+            Binaries & Tools
+            <span
+              class="font-mono text-[11px] px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 rounded text-zinc-500 font-normal"
+              id="tools-counter"
+              >5 items</span
+            >
+          </h2>
         </div>
 
-        <!-- DOWNLOADS SECTION -->
-        <section id="downloads">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-xs font-bold uppercase tracking-wider text-zinc-950 flex items-center gap-2">
-                    Binaries & Tools
-                    <span class="font-mono text-[11px] px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 rounded text-zinc-500 font-normal" id="tools-counter">5 items</span>
-                </h2>
-            </div>
-
-            <div class="grid gap-2.5">
-                <!-- DISKGENIUS -->
-                <div class="tool-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-zinc-200 rounded-lg bg-white hover:bg-zinc-50 hover:border-zinc-400 transition-all">
-                    <div class="flex items-start gap-3.5 min-w-0">
-                        <div class="p-2 border border-zinc-200 rounded-md bg-zinc-50 text-zinc-950 shrink-0 group-hover:bg-white transition-colors">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2 flex-wrap">
-                                <span class="text-sm font-semibold text-zinc-950">DiskGenius</span>
-                                <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">Partition</span>
-                                <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">Recovery</span>
-                            </div>
-                            <p class="text-[13px] text-zinc-500 mt-0.5">Disk partition manager, filesystem rebuild & data recovery utility.</p>
-                        </div>
-                    </div>
-                    <a class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-zinc-950 rounded bg-zinc-950 text-white text-xs font-semibold hover:bg-white hover:text-zinc-950 transition-colors shrink-0" href="https://drive.google.com/file/d/1WKt_DOVdiNAERpkC0d4OrTv-wh_QMpDQ/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
-                        <span>Get File</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                    </a>
+        <div class="grid gap-2.5">
+          <!-- DISKGENIUS -->
+          <div
+            class="tool-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-zinc-200 rounded-lg bg-white hover:bg-zinc-50 hover:border-zinc-400 transition-all"
+          >
+            <div class="flex items-start gap-3.5 min-w-0">
+              <div
+                class="p-2 border border-zinc-200 rounded-md bg-zinc-50 text-zinc-950 shrink-0 group-hover:bg-white transition-colors"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="2" y="2" width="20" height="8" rx="2"></rect>
+                  <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+                  <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                  <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-sm font-semibold text-zinc-950"
+                    >DiskGenius</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                    >Partition</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                    >Recovery</span
+                  >
                 </div>
-
-                <!-- OFFICE 2010 -->
-                <div class="tool-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-zinc-200 rounded-lg bg-white hover:bg-zinc-50 hover:border-zinc-400 transition-all">
-                    <div class="flex items-start gap-3.5 min-w-0">
-                        <div class="p-2 border border-zinc-200 rounded-md bg-zinc-50 text-zinc-950 shrink-0 group-hover:bg-white transition-colors">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2 flex-wrap">
-                                <span class="text-sm font-semibold text-zinc-950">Microsoft Office 2010</span>
-                                <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">Suite</span>
-                                <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">Legacy</span>
-                            </div>
-                            <p class="text-[13px] text-zinc-500 mt-0.5">Standalone offline installer package for legacy client deployments.</p>
-                        </div>
-                    </div>
-                    <a class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-zinc-950 rounded bg-zinc-950 text-white text-xs font-semibold hover:bg-white hover:text-zinc-950 transition-colors shrink-0" href="https://drive.google.com/file/d/1BGUTkhyqwqYD58hQzVwnduYW2GCgB3aj/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                        <span>Get File</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                    </a>
-                </div>
-
-                <!-- TIGHTVNC -->
-                <div class="tool-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-zinc-200 rounded-lg bg-white hover:bg-zinc-50 hover:border-zinc-400 transition-all">
-                    <div class="flex items-start gap-3.5 min-w-0">
-                        <div class="p-2 border border-zinc-200 rounded-md bg-zinc-50 text-zinc-950 shrink-0 group-hover:bg-white transition-colors">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2 flex-wrap">
-                                <span class="text-sm font-semibold text-zinc-950">TightVNC</span>
-                                <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">Remote</span>
-                                <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">Desktop</span>
-                            </div>
-                            <p class="text-[13px] text-zinc-500 mt-0.5">Free remote control and desktop sharing package for administration and support.</p>
-                        </div>
-                    </div>
-                    <a class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-zinc-950 rounded bg-zinc-950 text-white text-xs font-semibold hover:bg-white hover:text-zinc-950 transition-colors shrink-0" href="https://www.tightvnc.com/download.php" target="_blank" rel="noopener noreferrer">
-                        <span>Get File</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                    </a>
-                </div>
-
-                <!-- WINDOWS SERVER 2022 -->
-                <div class="tool-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-zinc-200 rounded-lg bg-white hover:bg-zinc-50 hover:border-zinc-400 transition-all">
-                    <div class="flex items-start gap-3.5 min-w-0">
-                        <div class="p-2 border border-zinc-200 rounded-md bg-zinc-50 text-zinc-950 shrink-0 group-hover:bg-white transition-colors">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2"></rect><rect x="2" y="14" width="20" height="8" rx="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line></svg>
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2 flex-wrap">
-                                <span class="text-sm font-semibold text-zinc-950">Windows Server 2022</span>
-                                <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">OS</span>
-                                <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">Server</span>
-                            </div>
-                            <p class="text-[13px] text-zinc-500 mt-0.5">Official Microsoft evaluation ISO package for server deployments and lab environments.</p>
-                        </div>
-                    </div>
-                    <a class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-zinc-950 rounded bg-zinc-950 text-white text-xs font-semibold hover:bg-white hover:text-zinc-950 transition-colors shrink-0" href="https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022" target="_blank" rel="noopener noreferrer">
-                        <span>Get File</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                    </a>
-                </div>
-
-                <!-- EPSON ADJUSTMENT PROGRAM (L360) -->
-                <div class="tool-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-zinc-200 rounded-lg bg-white hover:bg-zinc-50 hover:border-zinc-400 transition-all">
-                    <div class="flex items-start gap-3.5 min-w-0">
-                        <div class="p-2 border border-zinc-200 rounded-md bg-zinc-50 text-zinc-950 shrink-0 group-hover:bg-white transition-colors">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-                        </div>
-                        <div>
-                            <div class="flex items-center gap-2 flex-wrap">
-                                <span class="text-sm font-semibold text-zinc-950">Epson Adjustment Program (L360)</span>
-                                <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">Printer</span>
-                                <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">Resetter</span>
-                            </div>
-                            <p class="text-[13px] text-zinc-500 mt-0.5">Software resetter Waste Ink Pad Counter Epson L360 (Adjprog.exe).</p>
-                        </div>
-                    </div>
-                    <a class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-zinc-950 rounded bg-zinc-950 text-white text-xs font-semibold hover:bg-white hover:text-zinc-950 transition-colors shrink-0" href="https://drive.google.com/file/d/1EBprYlvT7Ou3P-m00GL1wAlOPzjPgXRs/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                        <span>Get File</span>
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                    </a>
-                </div>
-                
-                <!-- FOXIT PDF READER -->
-<div class="tool-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-zinc-200 rounded-lg bg-white hover:bg-zinc-50 hover:border-zinc-400 transition-all">
-    <div class="flex items-start gap-3.5 min-w-0">
-        <div class="p-2 border border-zinc-200 rounded-md bg-zinc-50 text-zinc-950 shrink-0 group-hover:bg-white transition-colors">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="9" y1="13" x2="15" y2="13"></line><line x1="9" y1="17" x2="13" y2="17"></line></svg>
-        </div>
-        <div>
-            <div class="flex items-center gap-2 flex-wrap">
-                <span class="text-sm font-semibold text-zinc-950">Foxit PDF Reader</span>
-                <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">PDF</span>
-                <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">Utility</span>
+                <p class="text-[13px] text-zinc-500 mt-0.5">
+                  Disk partition manager, filesystem rebuild & data recovery
+                  utility.
+                </p>
+              </div>
             </div>
-            <p class="text-[13px] text-zinc-500 mt-0.5">Lightweight PDF viewer, form filler, document annotation & digital signature tool.</p>
-        </div>
-    </div>
-    <a class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-zinc-950 rounded bg-zinc-950 text-white text-xs font-semibold hover:bg-white hover:text-zinc-950 transition-colors shrink-0" href="https://drive.google.com/file/d/1J5AC_JsgH_bDU1F9lHGCa8SIINsU8jgB/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
-        <span>Get File</span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-    </a>
-</div>
-            </div>
-        </section>
-
-        <!-- COMMANDS SECTION -->
-        <section id="commands">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-xs font-bold uppercase tracking-wider text-zinc-950 flex items-center gap-2">
-                    Terminal Snippets
-                    <span class="font-mono text-[11px] px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 rounded text-zinc-500 font-normal">3 commands</span>
-                </h2>
-            </div>
-
-            <div class="grid gap-3">
-                <!-- SMB -->
-                <div class="border border-zinc-200 rounded-lg overflow-hidden bg-white hover:border-zinc-400 transition-colors shadow-sm">
-                    <div class="px-3.5 py-2.5 bg-zinc-50 border-b border-zinc-200 flex justify-between items-center">
-                        <div class="flex items-center gap-2 text-xs font-semibold">
-                            <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">PS</span>
-                            <span>Enable SMB Guest Logons</span>
-                        </div>
-                        <button class="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono font-semibold bg-white border border-zinc-200 rounded hover:border-zinc-950 transition-all text-zinc-800" onclick="copySnippet(this, 'cmd-smb')">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                            <span>COPY</span>
-                        </button>
-                    </div>
-                    <div class="p-3.5 bg-zinc-950 text-zinc-100 font-mono text-xs flex gap-2.5 overflow-x-auto">
-                        <span class="text-zinc-500 select-none">&gt;</span>
-                        <code id="cmd-smb">Set-SmbClientConfiguration -EnableInsecureGuestLogons $true -Force</code>
-                    </div>
-                </div>
-
-                <!-- MAS -->
-                <div class="border border-zinc-200 rounded-lg overflow-hidden bg-white hover:border-zinc-400 transition-colors shadow-sm">
-                    <div class="px-3.5 py-2.5 bg-zinc-50 border-b border-zinc-200 flex justify-between items-center">
-                        <div class="flex items-center gap-2 text-xs font-semibold">
-                            <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">PS</span>
-                            <span>MAS Activation Suite (HWID / Ohook)</span>
-                        </div>
-                        <button class="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono font-semibold bg-white border border-zinc-200 rounded hover:border-zinc-950 transition-all text-zinc-800" onclick="copySnippet(this, 'cmd-mas')">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                            <span>COPY</span>
-                        </button>
-                    </div>
-                    <div class="p-3.5 bg-zinc-950 text-zinc-100 font-mono text-xs flex gap-2.5 overflow-x-auto">
-                        <span class="text-zinc-500 select-none">&gt;</span>
-                        <code id="cmd-mas">irm https://get.activated.win | iex</code>
-                    </div>
-                </div>
-
-                <!-- ASO -->
-                <div class="border border-zinc-200 rounded-lg overflow-hidden bg-white hover:border-zinc-400 transition-colors shadow-sm">
-                    <div class="px-3.5 py-2.5 bg-zinc-50 border-b border-zinc-200 flex justify-between items-center">
-                        <div class="flex items-center gap-2 text-xs font-semibold">
-                            <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">CMD</span>
-                            <span>ASO Automation Script</span>
-                        </div>
-                        <button class="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono font-semibold bg-white border border-zinc-200 rounded hover:border-zinc-950 transition-all text-zinc-800" onclick="copySnippet(this, 'cmd-aso')">
-                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                            <span>COPY</span>
-                        </button>
-                    </div>
-                    <div class="p-3.5 bg-zinc-950 text-zinc-100 font-mono text-xs flex gap-2.5 overflow-x-auto">
-                        <span class="text-zinc-500 select-none">$</span>
-                        <code id="cmd-aso">curl -L keyms.id/aso -o aso.cmd &amp; aso.cmd</code>
-                    </div>
-                </div>
-                <!-- FIX 1: REGEDIT METHOD (UNAUTHENTICATED GUEST ACCESS) -->
-<details class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all">
-    <summary class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors">
-        <div class="flex items-center gap-3.5">
-            <div class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div>
-                <h3 class="text-sm font-semibold text-zinc-950 leading-snug">Fix "Organization's Security Policies Block Unauthenticated Guest Access" (Via Regedit)</h3>
-                <div class="flex gap-1.5 mt-0.5">
-                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Win-10</span>
-                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Regedit</span>
-                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">SMB-Share</span>
-                </div>
-            </div>
-        </div>
-        <div class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-    </summary>
-    <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
-        <ul class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700">
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">1</span>
-                <b>Tes Ping:</b> Buka CMD, jalankan <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">ping [IP_Tujuan]</code> untuk memastikan fisik jaringan terhubung dan me-reply. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">01:07</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">2</span>
-                <b>Buka Regedit:</b> Tekan <kbd class="font-mono text-xs bg-white border border-zinc-300 px-1.5 py-0.5 rounded">Win + R</kbd>, ketik <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">regedit</code>, lalu Enter. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">01:35</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">3</span>
-                <b>Akses Direktori LanmanWorkstation:</b> Buka path:<br>
-                <code class="font-mono text-xs bg-zinc-200/70 px-1.5 py-0.5 rounded block mt-1 w-fit">HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters</code> <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">02:05</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">4</span>
-                <b>Buat Nilai DWORD:</b> Klik kanan di ruang kosong panel kanan &gt; <b>New &gt; DWORD (32-bit) Value</b> &gt; namai <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">AllowInsecureGuestAuth</code>. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">04:32</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">5</span>
-                <b>Set Nilai Value:</b> Klik dua kali nilai tersebut, ganti <b>Value data</b> dari <b>0</b> ke <b>1</b>, lalu klik OK. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">06:05</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">6</span>
-                <b>Pengujian:</b> Panggil kembali alamat share (contoh: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">\\192.168.x.x</code>). Folder atau printer share langsung terbuka normal. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">06:35</span>
-            </li>
-        </ul>
-        <div class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between">
-            <span class="font-mono text-[11px] text-zinc-500">SOURCE: TIPSKOMINFO</span>
-            <span class="font-mono text-[11px] text-zinc-400">REGEDIT FIX</span>
-        </div>
-    </div>
-</details>
-
-<!-- FIX 2: GPEDIT METHOD (INSECURE GUEST LOGONS) -->
-<details class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all">
-    <summary class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors">
-        <div class="flex items-center gap-3.5">
-            <div class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            </div>
-            <div>
-                <h3 class="text-sm font-semibold text-zinc-950 leading-snug">Fix "Organization's Security Policies Block Guest Access" (Via Gpedit)</h3>
-                <div class="flex gap-1.5 mt-0.5">
-                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Win-10/11-Pro</span>
-                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Gpedit</span>
-                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Policy</span>
-                </div>
-            </div>
-        </div>
-        <div class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-    </summary>
-    <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
-        <ul class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700">
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">1</span>
-                <b>Buka Group Policy Editor:</b> Tekan <kbd class="font-mono text-xs bg-white border border-zinc-300 px-1.5 py-0.5 rounded">Win + R</kbd>, ketik <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">gpedit.msc</code>, lalu Enter. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">02:35</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">2</span>
-                <b>Navigasi Kebijakan Jaringan:</b> Masuk ke hirarki folder:<br>
-                <code class="font-mono text-xs bg-zinc-200/70 px-1.5 py-0.5 rounded block mt-1 w-fit">Computer Configuration &gt; Administrative Templates &gt; Network &gt; Lanman Workstation</code> <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">03:21</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">3</span>
-                <b>Aktifkan Insecure Guest Logons:</b> Di panel kanan, klik ganda kebijakan <b>Enable insecure guest logons</b>. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">04:01</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">4</span>
-                <b>Ubah Status Kebijakan:</b> Ubah opsi dari <i>Not Configured / Disabled</i> ke <b>Enabled</b>, lalu klik <b>Apply</b> dan <b>OK</b>. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">04:24</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">5</span>
-                <b>Uji Koneksi:</b> Buka Run (<kbd class="font-mono text-xs bg-white border border-zinc-300 px-1.5 py-0.5 rounded">Win + R</kbd>) dan panggil kembali folder sharing (misal: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">\\192.168.0.204</code>). <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">04:37</span>
-            </li>
-        </ul>
-        <div class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between">
-            <span class="font-mono text-[11px] text-zinc-500">SOURCE: SEBATAS TOOLMAN</span>
-            <span class="font-mono text-[11px] text-zinc-400">GPEDIT FIX</span>
-        </div>
-    </div>
-</details>
-
-<!-- FIX 3: POWERSHELL SMB SIGNATURE (AN EXTENDED ERROR HAS OCCURRED) -->
-<details class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all">
-    <summary class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors">
-        <div class="flex items-center gap-3.5">
-            <div class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-            </div>
-            <div>
-                <h3 class="text-sm font-semibold text-zinc-950 leading-snug">Fix "An Extended Error Has Occurred" Sharing Folder (Via PowerShell)</h3>
-                <div class="flex gap-1.5 mt-0.5">
-                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Win-10/11</span>
-                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">PowerShell</span>
-                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">SMB-Sign</span>
-                </div>
-            </div>
-        </div>
-        <div class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-    </summary>
-    <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
-        <ul class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700">
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">1</span>
-                <b>Buka PowerShell As Admin:</b> Tekan <kbd class="font-mono text-xs bg-white border border-zinc-300 px-1.5 py-0.5 rounded">Win + X</kbd>, pilih <b>Windows Terminal (Admin)</b> atau cari <i>PowerShell</i> lalu klik kanan <i>Run as administrator</i>.
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">2</span>
-                <b>Nonaktifkan Kewajiban Security Signature:</b> Ketik perintah berikut lalu tekan Enter:
-                <div class="mt-2 p-2.5 bg-zinc-950 text-zinc-100 font-mono text-xs rounded border border-zinc-800 flex items-center justify-between gap-2 overflow-x-auto">
-                    <code>Set-SmbClientConfiguration -RequireSecuritySignature $false</code>
-                </div>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">3</span>
-                <b>Konfirmasi Eksekusi:</b> Saat muncul konfirmasi perubahan pengaturan, tekan <kbd class="font-mono text-xs bg-white border border-zinc-300 px-1.5 py-0.5 rounded">Y</kbd> lalu tekan Enter.
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">4</span>
-                <b>Pengujian &amp; Restart:</b> Tutup PowerShell dan coba buka kembali shared folder. Jika masih belum bisa terbuka, lakukan restart komputer klien sekali.
-            </li>
-        </ul>
-        <div class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between">
-            <span class="font-mono text-[11px] text-zinc-500">SOURCE: SOFTTRICK</span>
-            <span class="font-mono text-[11px] text-zinc-400">POWERSHELL SMB</span>
-        </div>
-    </div>
-</details>
-                <!-- UTILITY / PACKAGE -->
-<div class="tool-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-zinc-200 rounded-lg bg-white hover:bg-zinc-50 hover:border-zinc-400 transition-all">
-    <div class="flex items-start gap-3.5 min-w-0">
-        <div class="p-2 border border-zinc-200 rounded-md bg-zinc-50 text-zinc-950 shrink-0 group-hover:bg-white transition-colors">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
-        </div>
-        <div>
-            <div class="flex items-center gap-2 flex-wrap">
-                <span class="text-sm font-semibold text-zinc-950">Utility Package</span>
-                <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">Archive</span>
-                <span class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase">Tools</span>
-            </div>
-            <p class="text-[13px] text-zinc-500 mt-0.5">Custom software archive and tools package for system deployment.</p>
-        </div>
-    </div>
-    <a class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-zinc-950 rounded bg-zinc-950 text-white text-xs font-semibold hover:bg-white hover:text-zinc-950 transition-colors shrink-0" href="https://drive.google.com/file/d/1W3RTF0bMyRpe9R79D2f19O4S767ADtwk/view?usp=drive_link" target="_blank" rel="noopener noreferrer">
-        <span>Get File</span>
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-    </a>
-</div>
-            </div>
-        </section>
-
-        <!-- GUIDES SECTION (ACCORDIONS) -->
-        <section id="guides">
-            <div class="flex items-center justify-between mb-4">
-                <h2 class="text-xs font-bold uppercase tracking-wider text-zinc-950 flex items-center gap-2">
-                    Guides & Cheatsheets
-                    <span class="font-mono text-[11px] px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 rounded text-zinc-500 font-normal">3 guides</span>
-                </h2>
-            </div>
-
-            <div class="grid gap-3">
-
-                <!-- EPSON RESETTER GUIDE -->
-                <details class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all">
-                    <summary class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors">
-                        <div class="flex items-center gap-3.5">
-                            <div class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-semibold text-zinc-950 leading-snug">Cara Reset Waste Ink Pad Counter Epson L360 (Adjprog)</h3>
-                                <div class="flex gap-1.5 mt-0.5">
-                                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Printer</span>
-                                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Epson</span>
-                                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Repair</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                        </div>
-                    </summary>
-                    <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
-                        <ul class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700">
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">1</span>
-                                <b>Buka Aplikasi:</b> Ekstrak file zip yang sudah diunduh, lalu jalankan program <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Adjprog.exe</code>.
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">2</span>
-                                <b>Pilih Printer:</b> Klik tombol <b>Select</b>. Pada kolom <i>Model Name</i>, pilih <b>L360</b>. Biarkan Port pada posisi default (<code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Auto selection</code>), lalu klik <b>OK</b>.
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">3</span>
-                                <b>Masuk Menu Perbaikan:</b> Klik tombol <b>Particular adjustment mode</b>. Pada daftar menu yang muncul, pilih opsi <b>Waste ink pad counter</b>, lalu klik <b>OK</b>.
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">4</span>
-                                <b>Cek &amp; Reset Counter:</b> Beri centang pada kotak <b>Main pad counter</b>, lalu klik tombol <b>Check</b> (jika 100%, kuota bantalan limbah penuh). Centang kembali kotak <b>Main pad counter</b>, kemudian klik tombol <b>Initialize</b>. Klik <b>OK</b> pada konfirmasi popup dan tunggu proses penulisan ulang selesai.
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">5</span>
-                                <b>Restart Printer:</b> Saat muncul jendela perintah mematikan printer, matikan printer melalui tombol power fisiknya, lalu klik <b>OK</b> pada komputer. Nyalakan kembali printer Anda, lalu klik <b>OK</b> pada notifikasi terakhir.
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">6</span>
-                                <b>Selesai:</b> Penghitung (*counter*) berhasil kembali ke <b>0%</b> dan lampu indikator error printer akan normal kembali.
-                            </li>
-                        </ul>
-                        <div class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between">
-                            <span class="font-mono text-[11px] text-zinc-500">UTILITY: EPSON L360 RESIZE</span>
-                            <a class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold text-zinc-950 border border-zinc-200 bg-white px-3 py-1.5 rounded hover:bg-zinc-950 hover:text-white transition-all" href="https://drive.google.com/file/d/1EBprYlvT7Ou3P-m00GL1wAlOPzjPgXRs/view?usp=sharing" target="_blank" rel="noopener noreferrer">
-                                <span>Download Resetter</span>
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                </details>
-               
-                <!-- WINDOWS SERVER FILE SHARING -->
-                <details class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all">
-                    <summary class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors">
-                        <div class="flex items-center gap-3.5">
-                            <div class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
-                            </div>
-                            <div>
-                                <h3 class="text-sm font-semibold text-zinc-950 leading-snug">Konfigurasi File Sharing &amp; Permissions (Active Directory)</h3>
-                                <div class="flex gap-1.5 mt-0.5">
-                                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Win-Server</span>
-                                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Storage</span>
-                                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Security</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-                        </div>
-                    </summary>
-                    <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
-                        <ul class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700">
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">1</span>
-                                <b>Struktur Folder:</b> Siapkan folder utama (misal: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">C:\Share</code>) beserta subfolder divisinya (seperti <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">General</code>, <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Sales</code>, <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Legal</code>). <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">02:30</span>
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">2</span>
-                                <b>Folder Publik (Read-Only):</b> Klik kanan folder > <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Properties > Sharing > Advanced Sharing</code> > centang <i>Share this folder</i>. Di <b>Permissions</b>, biarkan grup <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Everyone</code> dengan hak <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Read</code> saja. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">03:55</span>
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">3</span>
-                                <b>Folder Divisi Tertutup (Restricted):</b> Pada <i>Advanced Sharing > Permissions</i>, <b>Remove</b> grup <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Everyone</code>. Klik <b>Add</b> grup AD (misal: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Sales</code>) dan centang <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Full Control</code>. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">08:12</span>
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">4</span>
-                                <b>Sinkronkan Hak Akses NTFS:</b> Buka tab <b>Security</b> folder > klik <b>Edit > Add</b> grup divisi yang sama > centang <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Full Control</code> (Wajib disamakan agar izin tidak bentrok). <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">08:59</span>
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">5</span>
-                                <b>Uji Akses Klien:</b> Dari PC klien tekan <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Win + R</code>, ketik format UNC Path: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">\\Nama-Server</code> atau <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">\\IP-Server</code>. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">05:50</span>
-                            </li>
-                            <li class="relative">
-                                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">6</span>
-                                <b>Manajemen Share Terpusat:</b> Buka <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Computer Management > Shared Folders > Shares</code> untuk melihat daftar folder sharing, mengubah izin, atau menghentikan share. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">16:58</span>
-                            </li>
-                        </ul>
-                        <div class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between">
-                            <span class="font-mono text-[11px] text-zinc-500">SOURCE: MIRZA RATRIADI</span>
-                            <a class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold text-zinc-950 border border-zinc-200 bg-white px-3 py-1.5 rounded hover:bg-zinc-950 hover:text-white transition-all" href="https://youtu.be/FQD2ROBJ2ik" target="_blank" rel="noopener noreferrer">
-                                <span>Watch Video</span>
-                                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
-                            </a>
-                        </div>
-                    </div>
-                </details>
-                <!-- ACTIVE DIRECTORY DOMAIN CONTROLLER GUIDE -->
-<details class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all">
-    <summary class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors">
-        <div class="flex items-center gap-3.5">
-            <div class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-            </div>
-            <div>
-                <h3 class="text-sm font-semibold text-zinc-950 leading-snug">Konfigurasi Active Directory Domain Controller (AD DS)</h3>
-                <div class="flex gap-1.5 mt-0.5">
-                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Win-Server</span>
-                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Active-Directory</span>
-                    <span class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase">Sysadmin</span>
-                </div>
-            </div>
-        </div>
-        <div class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-        </div>
-    </summary>
-    <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
-        <ul class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700">
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">1</span>
-                <b>Tetapkan IP Statik & Loopback DNS:</b> Server domain controller wajib menggunakan IP Statik. Masuk ke adapter network, atur Preferred DNS ke IP loopback <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">127.0.0.1</code> (karena server ini yang akan menjadi DNS server lokal). <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">04:30</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">2</span>
-                <b>Ubah Hostname (Computer Name):</b> Buka <i>Server Manager > Local Server</i>, ubah nama komputer agar sesuai standar server (contoh: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">JKT-DC1</code>), lalu restart Windows Server. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">05:25</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">3</span>
-                <b>Install Role Active Directory Domain Services:</b> Buka <i>Server Manager > Manage > Add Roles and Features</i>. Pilih <b>Role-based or feature-based installation</b>, lalu centang peran <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">Active Directory Domain Services</code> (AD DS) dan selesaikan instalasi. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">07:51</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">4</span>
-                <b>Promote Server to Domain Controller:</b> Klik ikon bendera notifikasi kuning di kanan atas, pilih <b>Promote this server to a domain controller</b>. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">11:05</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">5</span>
-                <b>Deployment Configuration (New Forest):</b> Pilih opsi <b>Add a new forest</b>, kemudian masukkan nama Root Domain (contoh: <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">perusahaan.local</code> atau <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">suka-suka.com</code>). <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">11:42</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">6</span>
-                <b>Tentukan Functional Level &amp; Password DSRM:</b> Atur Forest/Domain Functional Level ke versi Windows Server yang sesuai, lalu buat password pemulihan <b>DSRM</b> (<i>Directory Services Restore Mode</i>). Klik Next pada NetBIOS name hingga tahap validasi prasyarat. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">13:28</span>
-            </li>
-            <li class="relative">
-                <span class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900">7</span>
-                <b>Instalasi &amp; Restart Otomatis:</b> Klik tombol <b>Install</b>. Setelah selesai, server akan reboot otomatis. Saat masuk ke halaman login, akun administrator berubah format menjadi <code class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded">DOMAIN\Administrator</code> menandakan Domain Controller telah aktif. <span class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1">17:44</span>
-            </li>
-        </ul>
-        <div class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between">
-            <span class="font-mono text-[11px] text-zinc-500">SOURCE: MIRZA RATRIADI</span>
-            <a class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold text-zinc-950 border border-zinc-200 bg-white px-3 py-1.5 rounded hover:bg-zinc-950 hover:text-white transition-all" href="https://youtu.be/1H8n-EjyHuo" target="_blank" rel="noopener noreferrer">
-                <span>Watch Video</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
+            <a
+              class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-zinc-950 rounded bg-zinc-950 text-white text-xs font-semibold hover:bg-white hover:text-zinc-950 transition-colors shrink-0"
+              href="https://drive.google.com/file/d/1WKt_DOVdiNAERpkC0d4OrTv-wh_QMpDQ/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Get File</span>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2.5"
+              >
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
             </a>
-        </div>
-    </div>
-</details>
+          </div>
 
+          <!-- OFFICE 2010 -->
+          <div
+            class="tool-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-zinc-200 rounded-lg bg-white hover:bg-zinc-50 hover:border-zinc-400 transition-all"
+          >
+            <div class="flex items-start gap-3.5 min-w-0">
+              <div
+                class="p-2 border border-zinc-200 rounded-md bg-zinc-50 text-zinc-950 shrink-0 group-hover:bg-white transition-colors"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  ></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                </svg>
+              </div>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-sm font-semibold text-zinc-950"
+                    >Microsoft Office 2010</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                    >Suite</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                    >Legacy</span
+                  >
+                </div>
+                <p class="text-[13px] text-zinc-500 mt-0.5">
+                  Standalone offline installer package for legacy client
+                  deployments.
+                </p>
+              </div>
             </div>
-        </section>
+            <a
+              class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-zinc-950 rounded bg-zinc-950 text-white text-xs font-semibold hover:bg-white hover:text-zinc-950 transition-colors shrink-0"
+              href="https://drive.google.com/file/d/1BGUTkhyqwqYD58hQzVwnduYW2GCgB3aj/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Get File</span>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2.5"
+              >
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </a>
+          </div>
 
-        <!-- EMPTY STATE -->
-        <div id="empty-state" class="hidden py-10 px-4 text-center border border-dashed border-zinc-300 rounded-lg text-zinc-400 text-sm">
-            No matching resources, commands, or guides found.
+          <!-- TIGHTVNC -->
+          <div
+            class="tool-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-zinc-200 rounded-lg bg-white hover:bg-zinc-50 hover:border-zinc-400 transition-all"
+          >
+            <div class="flex items-start gap-3.5 min-w-0">
+              <div
+                class="p-2 border border-zinc-200 rounded-md bg-zinc-50 text-zinc-950 shrink-0 group-hover:bg-white transition-colors"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="2" y="3" width="20" height="14" rx="2"></rect>
+                  <line x1="8" y1="21" x2="16" y2="21"></line>
+                  <line x1="12" y1="17" x2="12" y2="21"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-sm font-semibold text-zinc-950"
+                    >TightVNC</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                    >Remote</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                    >Desktop</span
+                  >
+                </div>
+                <p class="text-[13px] text-zinc-500 mt-0.5">
+                  Free remote control and desktop sharing package for
+                  administration and support.
+                </p>
+              </div>
+            </div>
+            <a
+              class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-zinc-950 rounded bg-zinc-950 text-white text-xs font-semibold hover:bg-white hover:text-zinc-950 transition-colors shrink-0"
+              href="https://www.tightvnc.com/download.php"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Get File</span>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2.5"
+              >
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- WINDOWS SERVER 2022 -->
+          <div
+            class="tool-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-zinc-200 rounded-lg bg-white hover:bg-zinc-50 hover:border-zinc-400 transition-all"
+          >
+            <div class="flex items-start gap-3.5 min-w-0">
+              <div
+                class="p-2 border border-zinc-200 rounded-md bg-zinc-50 text-zinc-950 shrink-0 group-hover:bg-white transition-colors"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="2" y="2" width="20" height="8" rx="2"></rect>
+                  <rect x="2" y="14" width="20" height="8" rx="2"></rect>
+                  <line x1="6" y1="6" x2="6.01" y2="6"></line>
+                  <line x1="6" y1="18" x2="6.01" y2="18"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-sm font-semibold text-zinc-950"
+                    >Windows Server 2022</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                    >OS</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                    >Server</span
+                  >
+                </div>
+                <p class="text-[13px] text-zinc-500 mt-0.5">
+                  Official Microsoft evaluation ISO package for server
+                  deployments and lab environments.
+                </p>
+              </div>
+            </div>
+            <a
+              class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-zinc-950 rounded bg-zinc-950 text-white text-xs font-semibold hover:bg-white hover:text-zinc-950 transition-colors shrink-0"
+              href="https://www.microsoft.com/en-us/evalcenter/download-windows-server-2022"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Get File</span>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2.5"
+              >
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- EPSON ADJUSTMENT PROGRAM (L360) -->
+          <div
+            class="tool-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-zinc-200 rounded-lg bg-white hover:bg-zinc-50 hover:border-zinc-400 transition-all"
+          >
+            <div class="flex items-start gap-3.5 min-w-0">
+              <div
+                class="p-2 border border-zinc-200 rounded-md bg-zinc-50 text-zinc-950 shrink-0 group-hover:bg-white transition-colors"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                  <path
+                    d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
+                  ></path>
+                  <rect x="6" y="14" width="12" height="8"></rect>
+                </svg>
+              </div>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-sm font-semibold text-zinc-950"
+                    >Epson Adjustment Program (L360)</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                    >Printer</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                    >Resetter</span
+                  >
+                </div>
+                <p class="text-[13px] text-zinc-500 mt-0.5">
+                  Software resetter Waste Ink Pad Counter Epson L360
+                  (Adjprog.exe).
+                </p>
+              </div>
+            </div>
+            <a
+              class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-zinc-950 rounded bg-zinc-950 text-white text-xs font-semibold hover:bg-white hover:text-zinc-950 transition-colors shrink-0"
+              href="https://drive.google.com/file/d/1EBprYlvT7Ou3P-m00GL1wAlOPzjPgXRs/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Get File</span>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2.5"
+              >
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- FOXIT PDF READER -->
+          <div
+            class="tool-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-zinc-200 rounded-lg bg-white hover:bg-zinc-50 hover:border-zinc-400 transition-all"
+          >
+            <div class="flex items-start gap-3.5 min-w-0">
+              <div
+                class="p-2 border border-zinc-200 rounded-md bg-zinc-50 text-zinc-950 shrink-0 group-hover:bg-white transition-colors"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"
+                  ></path>
+                  <polyline points="14 2 14 8 20 8"></polyline>
+                  <line x1="9" y1="13" x2="15" y2="13"></line>
+                  <line x1="9" y1="17" x2="13" y2="17"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-sm font-semibold text-zinc-950"
+                    >Foxit PDF Reader</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                    >PDF</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                    >Utility</span
+                  >
+                </div>
+                <p class="text-[13px] text-zinc-500 mt-0.5">
+                  Lightweight PDF viewer, form filler, document annotation &
+                  digital signature tool.
+                </p>
+              </div>
+            </div>
+            <a
+              class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-zinc-950 rounded bg-zinc-950 text-white text-xs font-semibold hover:bg-white hover:text-zinc-950 transition-colors shrink-0"
+              href="https://drive.google.com/file/d/1J5AC_JsgH_bDU1F9lHGCa8SIINsU8jgB/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Get File</span>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2.5"
+              >
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- DEEP L -->
+          <div
+            class="tool-item group flex flex-col sm:flex-row sm:items-center justify-between gap-4 p-4 border border-zinc-200 rounded-lg bg-white hover:bg-zinc-50 hover:border-zinc-400 transition-all"
+          >
+            <div class="flex items-start gap-3.5 min-w-0">
+              <div
+                class="p-2 border border-zinc-200 rounded-md bg-zinc-50 text-zinc-950 shrink-0 group-hover:bg-white transition-colors"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+                  ></path>
+                  <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                  <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                </svg>
+              </div>
+              <div>
+                <div class="flex items-center gap-2 flex-wrap">
+                  <span class="text-sm font-semibold text-zinc-950"
+                    >Utility Package</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                    >Archive</span
+                  >
+                  <span
+                    class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                    >Tools</span
+                  >
+                </div>
+                <p class="text-[13px] text-zinc-500 mt-0.5">
+                  Custom software archive and tools package for system
+                  deployment.
+                </p>
+              </div>
+            </div>
+            <a
+              class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 border border-zinc-950 rounded bg-zinc-950 text-white text-xs font-semibold hover:bg-white hover:text-zinc-950 transition-colors shrink-0"
+              href="https://drive.google.com/file/d/1W3RTF0bMyRpe9R79D2f19O4S767ADtwk/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <span>Get File</span>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke-width="2.5"
+              >
+                <path d="M7 17L17 7M17 7H7M17 7V17" />
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- COMMANDS SECTION -->
+      <section id="commands">
+        <div class="flex items-center justify-between mb-4">
+          <h2
+            class="text-xs font-bold uppercase tracking-wider text-zinc-950 flex items-center gap-2"
+          >
+            Terminal Snippets
+            <span
+              class="font-mono text-[11px] px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 rounded text-zinc-500 font-normal"
+              >3 commands</span
+            >
+          </h2>
         </div>
 
+        <div class="grid gap-3">
+          <!-- SMB -->
+          <div
+            class="border border-zinc-200 rounded-lg overflow-hidden bg-white hover:border-zinc-400 transition-colors shadow-sm"
+          >
+            <div
+              class="px-3.5 py-2.5 bg-zinc-50 border-b border-zinc-200 flex justify-between items-center"
+            >
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span
+                  class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                  >PS</span
+                >
+                <span>Enable SMB Guest Logons</span>
+              </div>
+              <button
+                class="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono font-semibold bg-white border border-zinc-200 rounded hover:border-zinc-950 transition-all text-zinc-800"
+                onclick="copySnippet(this, 'cmd-smb')"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                <span>COPY</span>
+              </button>
+            </div>
+            <div
+              class="p-3.5 bg-zinc-950 text-zinc-100 font-mono text-xs flex gap-2.5 overflow-x-auto"
+            >
+              <span class="text-zinc-500 select-none">&gt;</span>
+              <code id="cmd-smb"
+                >Set-SmbClientConfiguration -EnableInsecureGuestLogons $true
+                -Force</code
+              >
+            </div>
+          </div>
+
+          <!-- MAS -->
+          <div
+            class="border border-zinc-200 rounded-lg overflow-hidden bg-white hover:border-zinc-400 transition-colors shadow-sm"
+          >
+            <div
+              class="px-3.5 py-2.5 bg-zinc-50 border-b border-zinc-200 flex justify-between items-center"
+            >
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span
+                  class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                  >PS</span
+                >
+                <span>MAS Activation Suite (HWID / Ohook)</span>
+              </div>
+              <button
+                class="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono font-semibold bg-white border border-zinc-200 rounded hover:border-zinc-950 transition-all text-zinc-800"
+                onclick="copySnippet(this, 'cmd-mas')"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                <span>COPY</span>
+              </button>
+            </div>
+            <div
+              class="p-3.5 bg-zinc-950 text-zinc-100 font-mono text-xs flex gap-2.5 overflow-x-auto"
+            >
+              <span class="text-zinc-500 select-none">&gt;</span>
+              <code id="cmd-mas">irm https://get.activated.win | iex</code>
+            </div>
+          </div>
+
+          <!-- ASO -->
+          <div
+            class="border border-zinc-200 rounded-lg overflow-hidden bg-white hover:border-zinc-400 transition-colors shadow-sm"
+          >
+            <div
+              class="px-3.5 py-2.5 bg-zinc-50 border-b border-zinc-200 flex justify-between items-center"
+            >
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span
+                  class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                  >CMD</span
+                >
+                <span>ASO Automation Script</span>
+              </div>
+              <button
+                class="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono font-semibold bg-white border border-zinc-200 rounded hover:border-zinc-950 transition-all text-zinc-800"
+                onclick="copySnippet(this, 'cmd-aso')"
+              >
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <rect x="9" y="9" width="13" height="13" rx="2"></rect>
+                  <path
+                    d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"
+                  ></path>
+                </svg>
+                <span>COPY</span>
+              </button>
+            </div>
+            <div
+              class="p-3.5 bg-zinc-950 text-zinc-100 font-mono text-xs flex gap-2.5 overflow-x-auto"
+            >
+              <span class="text-zinc-500 select-none">$</span>
+              <code id="cmd-aso"
+                >curl -L keyms.id/aso -o aso.cmd &amp; aso.cmd</code
+              >
+            </div>
+          </div>
+
+          <!-- SMB SIGNATURE FIX -->
+          <div
+            class="border border-zinc-200 rounded-lg overflow-hidden bg-white hover:border-zinc-400 transition-colors shadow-sm"
+          >
+            <div
+              class="px-3.5 py-2.5 bg-zinc-50 border-b border-zinc-200 flex justify-between items-center"
+            >
+              <div class="flex items-center gap-2 text-xs font-semibold">
+                <span
+                  class="font-mono text-[10px] px-1.5 py-0.5 border border-zinc-200 rounded text-zinc-500 uppercase"
+                  >PS</span
+                >
+                <span>Fix "An Extended Error Has Occurred" Sharing Folder</span>
+              </div>
+              <button
+                class="flex items-center gap-1.5 px-2.5 py-1 text-[11px] font-mono font-semibold bg-white border border-zinc-200 rounded hover:border-zinc-950 transition-all text-zinc-800"
+                onclick="copySnippet(this, 'cmd-smb-signature')"
+              >
+                <span>COPY</span>
+              </button>
+            </div>
+
+            <div
+              class="p-3.5 bg-zinc-950 text-zinc-100 font-mono text-xs flex gap-2.5 overflow-x-auto"
+            >
+              <span class="text-zinc-500 select-none">&gt;</span>
+              <code id="cmd-smb-signature"
+                >Set-SmbClientConfiguration -RequireSecuritySignature
+                $false</code
+              >
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- GUIDES SECTION (ACCORDIONS) -->
+      <section id="guides">
+        <div class="flex items-center justify-between mb-4">
+          <h2
+            class="text-xs font-bold uppercase tracking-wider text-zinc-950 flex items-center gap-2"
+          >
+            Guides & Cheatsheets
+            <span
+              class="font-mono text-[11px] px-1.5 py-0.5 bg-zinc-100 border border-zinc-200 rounded text-zinc-500 font-normal"
+              >3 guides</span
+            >
+          </h2>
+        </div>
+
+        <div class="grid gap-3">
+          <!-- EPSON RESETTER GUIDE -->
+          <details
+            class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all"
+          >
+            <summary
+              class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors"
+            >
+              <div class="flex items-center gap-3.5">
+                <div
+                  class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <polyline points="6 9 6 2 18 2 18 9"></polyline>
+                    <path
+                      d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"
+                    ></path>
+                    <rect x="6" y="14" width="12" height="8"></rect>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-sm font-semibold text-zinc-950 leading-snug">
+                    Cara Reset Waste Ink Pad Counter Epson L360 (Adjprog)
+                  </h3>
+                  <div class="flex gap-1.5 mt-0.5">
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >Printer</span
+                    >
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >Epson</span
+                    >
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >Repair</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </div>
+            </summary>
+            <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
+              <ul
+                class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700"
+              >
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >1</span
+                  >
+                  <b>Buka Aplikasi:</b> Ekstrak file zip yang sudah diunduh,
+                  lalu jalankan program
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >Adjprog.exe</code
+                  >.
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >2</span
+                  >
+                  <b>Pilih Printer:</b> Klik tombol <b>Select</b>. Pada kolom
+                  <i>Model Name</i>, pilih <b>L360</b>. Biarkan Port pada posisi
+                  default (<code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >Auto selection</code
+                  >), lalu klik <b>OK</b>.
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >3</span
+                  >
+                  <b>Masuk Menu Perbaikan:</b> Klik tombol
+                  <b>Particular adjustment mode</b>. Pada daftar menu yang
+                  muncul, pilih opsi <b>Waste ink pad counter</b>, lalu klik
+                  <b>OK</b>.
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >4</span
+                  >
+                  <b>Cek &amp; Reset Counter:</b> Beri centang pada kotak
+                  <b>Main pad counter</b>, lalu klik tombol <b>Check</b> (jika
+                  100%, kuota bantalan limbah penuh). Centang kembali kotak
+                  <b>Main pad counter</b>, kemudian klik tombol
+                  <b>Initialize</b>. Klik <b>OK</b> pada konfirmasi popup dan
+                  tunggu proses penulisan ulang selesai.
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >5</span
+                  >
+                  <b>Restart Printer:</b> Saat muncul jendela perintah mematikan
+                  printer, matikan printer melalui tombol power fisiknya, lalu
+                  klik <b>OK</b> pada komputer. Nyalakan kembali printer Anda,
+                  lalu klik <b>OK</b> pada notifikasi terakhir.
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >6</span
+                  >
+                  <b>Selesai:</b> Penghitung (*counter*) berhasil kembali ke
+                  <b>0%</b> dan lampu indikator error printer akan normal
+                  kembali.
+                </li>
+              </ul>
+              <div
+                class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between"
+              >
+                <span class="font-mono text-[11px] text-zinc-500"
+                  >UTILITY: EPSON L360 RESIZE</span
+                >
+                <a
+                  class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold text-zinc-950 border border-zinc-200 bg-white px-3 py-1.5 rounded hover:bg-zinc-950 hover:text-white transition-all"
+                  href="https://drive.google.com/file/d/1EBprYlvT7Ou3P-m00GL1wAlOPzjPgXRs/view?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Download Resetter</span>
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke-width="2.5"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </details>
+
+          <!-- WINDOWS SERVER FILE SHARING -->
+          <details
+            class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all"
+          >
+            <summary
+              class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors"
+            >
+              <div class="flex items-center gap-3.5">
+                <div
+                  class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-sm font-semibold text-zinc-950 leading-snug">
+                    Konfigurasi File Sharing &amp; Permissions (Active
+                    Directory)
+                  </h3>
+                  <div class="flex gap-1.5 mt-0.5">
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >Win-Server</span
+                    >
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >Storage</span
+                    >
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >Security</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </div>
+            </summary>
+            <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
+              <ul
+                class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700"
+              >
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >1</span
+                  >
+                  <b>Struktur Folder:</b> Siapkan folder utama (misal:
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >C:\Share</code
+                  >) beserta subfolder divisinya (seperti
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >General</code
+                  >,
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >Sales</code
+                  >,
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >Legal</code
+                  >).
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >02:30</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >2</span
+                  >
+                  <b>Folder Publik (Read-Only):</b> Klik kanan folder >
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >Properties > Sharing > Advanced Sharing</code
+                  >
+                  > centang <i>Share this folder</i>. Di <b>Permissions</b>,
+                  biarkan grup
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >Everyone</code
+                  >
+                  dengan hak
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >Read</code
+                  >
+                  saja.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >03:55</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >3</span
+                  >
+                  <b>Folder Divisi Tertutup (Restricted):</b> Pada
+                  <i>Advanced Sharing > Permissions</i>, <b>Remove</b> grup
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >Everyone</code
+                  >. Klik <b>Add</b> grup AD (misal:
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >Sales</code
+                  >) dan centang
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >Full Control</code
+                  >.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >08:12</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >4</span
+                  >
+                  <b>Sinkronkan Hak Akses NTFS:</b> Buka tab
+                  <b>Security</b> folder > klik <b>Edit > Add</b> grup divisi
+                  yang sama > centang
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >Full Control</code
+                  >
+                  (Wajib disamakan agar izin tidak bentrok).
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >08:59</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >5</span
+                  >
+                  <b>Uji Akses Klien:</b> Dari PC klien tekan
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >Win + R</code
+                  >, ketik format UNC Path:
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >\\Nama-Server</code
+                  >
+                  atau
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >\\IP-Server</code
+                  >.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >05:50</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >6</span
+                  >
+                  <b>Manajemen Share Terpusat:</b> Buka
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >Computer Management > Shared Folders > Shares</code
+                  >
+                  untuk melihat daftar folder sharing, mengubah izin, atau
+                  menghentikan share.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >16:58</span
+                  >
+                </li>
+              </ul>
+              <div
+                class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between"
+              >
+                <span class="font-mono text-[11px] text-zinc-500"
+                  >SOURCE: MIRZA RATRIADI</span
+                >
+                <a
+                  class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold text-zinc-950 border border-zinc-200 bg-white px-3 py-1.5 rounded hover:bg-zinc-950 hover:text-white transition-all"
+                  href="https://youtu.be/FQD2ROBJ2ik"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Watch Video</span>
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke-width="2.5"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </details>
+          <!-- ACTIVE DIRECTORY DOMAIN CONTROLLER GUIDE -->
+          <details
+            class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all"
+          >
+            <summary
+              class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors"
+            >
+              <div class="flex items-center gap-3.5">
+                <div
+                  class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-sm font-semibold text-zinc-950 leading-snug">
+                    Konfigurasi Active Directory Domain Controller (AD DS)
+                  </h3>
+                  <div class="flex gap-1.5 mt-0.5">
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >Win-Server</span
+                    >
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >Active-Directory</span
+                    >
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >Sysadmin</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </div>
+            </summary>
+            <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
+              <ul
+                class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700"
+              >
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >1</span
+                  >
+                  <b>Tetapkan IP Statik & Loopback DNS:</b> Server domain
+                  controller wajib menggunakan IP Statik. Masuk ke adapter
+                  network, atur Preferred DNS ke IP loopback
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >127.0.0.1</code
+                  >
+                  (karena server ini yang akan menjadi DNS server lokal).
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >04:30</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >2</span
+                  >
+                  <b>Ubah Hostname (Computer Name):</b> Buka
+                  <i>Server Manager > Local Server</i>, ubah nama komputer agar
+                  sesuai standar server (contoh:
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >JKT-DC1</code
+                  >), lalu restart Windows Server.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >05:25</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >3</span
+                  >
+                  <b>Install Role Active Directory Domain Services:</b> Buka
+                  <i>Server Manager > Manage > Add Roles and Features</i>. Pilih
+                  <b>Role-based or feature-based installation</b>, lalu centang
+                  peran
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >Active Directory Domain Services</code
+                  >
+                  (AD DS) dan selesaikan instalasi.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >07:51</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >4</span
+                  >
+                  <b>Promote Server to Domain Controller:</b> Klik ikon bendera
+                  notifikasi kuning di kanan atas, pilih
+                  <b>Promote this server to a domain controller</b>.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >11:05</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >5</span
+                  >
+                  <b>Deployment Configuration (New Forest):</b> Pilih opsi
+                  <b>Add a new forest</b>, kemudian masukkan nama Root Domain
+                  (contoh:
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >perusahaan.local</code
+                  >
+                  atau
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >suka-suka.com</code
+                  >).
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >11:42</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >6</span
+                  >
+                  <b>Tentukan Functional Level &amp; Password DSRM:</b> Atur
+                  Forest/Domain Functional Level ke versi Windows Server yang
+                  sesuai, lalu buat password pemulihan <b>DSRM</b> (<i
+                    >Directory Services Restore Mode</i
+                  >). Klik Next pada NetBIOS name hingga tahap validasi
+                  prasyarat.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >13:28</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >7</span
+                  >
+                  <b>Instalasi &amp; Restart Otomatis:</b> Klik tombol
+                  <b>Install</b>. Setelah selesai, server akan reboot otomatis.
+                  Saat masuk ke halaman login, akun administrator berubah format
+                  menjadi
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >DOMAIN\Administrator</code
+                  >
+                  menandakan Domain Controller telah aktif.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >17:44</span
+                  >
+                </li>
+              </ul>
+              <div
+                class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between"
+              >
+                <span class="font-mono text-[11px] text-zinc-500"
+                  >SOURCE: MIRZA RATRIADI</span
+                >
+                <a
+                  class="inline-flex items-center gap-1.5 font-mono text-[11px] font-semibold text-zinc-950 border border-zinc-200 bg-white px-3 py-1.5 rounded hover:bg-zinc-950 hover:text-white transition-all"
+                  href="https://youtu.be/1H8n-EjyHuo"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Watch Video</span>
+                  <svg
+                    width="12"
+                    height="12"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke-width="2.5"
+                  >
+                    <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </details>
+
+          <details
+            class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all"
+          >
+            <summary
+              class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors"
+            >
+              <div class="flex items-center gap-3.5">
+                <div
+                  class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-sm font-semibold text-zinc-950 leading-snug">
+                    Fix "Organization's Security Policies Block Unauthenticated
+                    Guest Access" (Via Regedit)
+                  </h3>
+                  <div class="flex gap-1.5 mt-0.5">
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >Win-10</span
+                    >
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >Regedit</span
+                    >
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >SMB-Share</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </div>
+            </summary>
+            <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
+              <ul
+                class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700"
+              >
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >1</span
+                  >
+                  <b>Tes Ping:</b> Buka CMD, jalankan
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >ping [IP_Tujuan]</code
+                  >
+                  untuk memastikan fisik jaringan terhubung dan me-reply.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >01:07</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >2</span
+                  >
+                  <b>Buka Regedit:</b> Tekan
+                  <kbd
+                    class="font-mono text-xs bg-white border border-zinc-300 px-1.5 py-0.5 rounded"
+                    >Win + R</kbd
+                  >, ketik
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >regedit</code
+                  >, lalu Enter.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >01:35</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >3</span
+                  >
+                  <b>Akses Direktori LanmanWorkstation:</b> Buka path:<br />
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1.5 py-0.5 rounded block mt-1 w-fit"
+                    >HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\LanmanWorkstation\Parameters</code
+                  >
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >02:05</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >4</span
+                  >
+                  <b>Buat Nilai DWORD:</b> Klik kanan di ruang kosong panel
+                  kanan &gt; <b>New &gt; DWORD (32-bit) Value</b> &gt; namai
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >AllowInsecureGuestAuth</code
+                  >.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >04:32</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >5</span
+                  >
+                  <b>Set Nilai Value:</b> Klik dua kali nilai tersebut, ganti
+                  <b>Value data</b> dari <b>0</b> ke <b>1</b>, lalu klik OK.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >06:05</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >6</span
+                  >
+                  <b>Pengujian:</b> Panggil kembali alamat share (contoh:
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >\\192.168.x.x</code
+                  >). Folder atau printer share langsung terbuka normal.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >06:35</span
+                  >
+                </li>
+              </ul>
+              <div
+                class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between"
+              >
+                <span class="font-mono text-[11px] text-zinc-500"
+                  >SOURCE: TIPSKOMINFO</span
+                >
+                <span class="font-mono text-[11px] text-zinc-400"
+                  >REGEDIT FIX</span
+                >
+              </div>
+            </div>
+          </details>
+
+          <details
+            class="tool-item group border border-zinc-200 rounded-lg bg-white overflow-hidden shadow-sm open:border-zinc-950 transition-all"
+          >
+            <summary
+              class="flex items-center justify-between p-4 cursor-pointer select-none hover:bg-zinc-50 list-none transition-colors"
+            >
+              <div class="flex items-center gap-3.5">
+                <div
+                  class="w-8 h-8 rounded border border-zinc-200 bg-zinc-50 flex items-center justify-center shrink-0"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-sm font-semibold text-zinc-950 leading-snug">
+                    Fix "Organization's Security Policies Block Guest Access"
+                    (Via Gpedit)
+                  </h3>
+                  <div class="flex gap-1.5 mt-0.5">
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >Win-10/11-Pro</span
+                    >
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >Gpedit</span
+                    >
+                    <span
+                      class="font-mono text-[10px] px-1.5 py-0.2 border border-zinc-200 rounded text-zinc-500 uppercase"
+                      >Policy</span
+                    >
+                  </div>
+                </div>
+              </div>
+              <div
+                class="w-7 h-7 rounded border border-zinc-200 flex items-center justify-center bg-white group-open:rotate-180 group-open:bg-zinc-950 group-open:text-white transition-all shrink-0"
+              >
+                <svg
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </div>
+            </summary>
+            <div class="p-5 border-t border-zinc-200 bg-zinc-50/50">
+              <ul
+                class="relative pl-6 space-y-4 border-l border-zinc-200 text-[13px] text-zinc-700"
+              >
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >1</span
+                  >
+                  <b>Buka Group Policy Editor:</b> Tekan
+                  <kbd
+                    class="font-mono text-xs bg-white border border-zinc-300 px-1.5 py-0.5 rounded"
+                    >Win + R</kbd
+                  >, ketik
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >gpedit.msc</code
+                  >, lalu Enter.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >02:35</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >2</span
+                  >
+                  <b>Navigasi Kebijakan Jaringan:</b> Masuk ke hirarki
+                  folder:<br />
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1.5 py-0.5 rounded block mt-1 w-fit"
+                    >Computer Configuration &gt; Administrative Templates &gt;
+                    Network &gt; Lanman Workstation</code
+                  >
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >03:21</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >3</span
+                  >
+                  <b>Aktifkan Insecure Guest Logons:</b> Di panel kanan, klik
+                  ganda kebijakan <b>Enable insecure guest logons</b>.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >04:01</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >4</span
+                  >
+                  <b>Ubah Status Kebijakan:</b> Ubah opsi dari
+                  <i>Not Configured / Disabled</i> ke <b>Enabled</b>, lalu klik
+                  <b>Apply</b> dan <b>OK</b>.
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >04:24</span
+                  >
+                </li>
+                <li class="relative">
+                  <span
+                    class="absolute -left-[31px] top-0.5 w-5 h-5 rounded-full border border-zinc-300 bg-white font-mono text-[10px] font-bold flex items-center justify-center text-zinc-900"
+                    >5</span
+                  >
+                  <b>Uji Koneksi:</b> Buka Run (<kbd
+                    class="font-mono text-xs bg-white border border-zinc-300 px-1.5 py-0.5 rounded"
+                    >Win + R</kbd
+                  >) dan panggil kembali folder sharing (misal:
+                  <code
+                    class="font-mono text-xs bg-zinc-200/70 px-1 py-0.5 rounded"
+                    >\\192.168.0.204</code
+                  >).
+                  <span
+                    class="font-mono text-[10px] border border-zinc-200 bg-white px-1.5 py-0.5 rounded text-zinc-500 ml-1"
+                    >04:37</span
+                  >
+                </li>
+              </ul>
+              <div
+                class="mt-5 pt-4 border-t border-dashed border-zinc-200 flex items-center justify-between"
+              >
+                <span class="font-mono text-[11px] text-zinc-500"
+                  >SOURCE: SEBATAS TOOLMAN</span
+                >
+                <span class="font-mono text-[11px] text-zinc-400"
+                  >GPEDIT FIX</span
+                >
+              </div>
+            </div>
+          </details>
+        </div>
+      </section>
+
+      <!-- EMPTY STATE -->
+      <div
+        id="empty-state"
+        class="hidden py-10 px-4 text-center border border-dashed border-zinc-300 rounded-lg text-zinc-400 text-sm"
+      >
+        No matching resources, commands, or guides found.
+      </div>
     </main>
 
     <!-- FOOTER -->
-    <footer class="border-t border-zinc-200 py-6 text-center font-mono text-[11px] text-zinc-400">
-        AGUNG'S TOOLBOX — LOCAL WORKSTATION REPO
+    <footer
+      class="border-t border-zinc-200 py-6 text-center font-mono text-[11px] text-zinc-400"
+    >
+      AGUNG'S TOOLBOX — LOCAL WORKSTATION REPO
     </footer>
 
     <!-- LOGIC SCRIPT -->
     <script>
-        // Shortcut `/` untuk fokus ke search bar
-        window.addEventListener('keydown', (e) => {
-            if (e.key === '/' && document.activeElement !== document.getElementById('searchInput')) {
-                e.preventDefault();
-                document.getElementById('searchInput').focus();
-            }
+      // Shortcut `/` untuk fokus ke search bar
+      window.addEventListener("keydown", (e) => {
+        if (
+          e.key === "/" &&
+          document.activeElement !== document.getElementById("searchInput")
+        ) {
+          e.preventDefault();
+          document.getElementById("searchInput").focus();
+        }
+      });
+
+      // Filter pencarian untuk seluruh item
+      function filterTools() {
+        const query = document
+          .getElementById("searchInput")
+          .value.toLowerCase()
+          .trim();
+        const tools = document.querySelectorAll(".tool-item");
+        let visibleCount = 0;
+
+        tools.forEach((tool) => {
+          const match = tool.innerText.toLowerCase().includes(query);
+          tool.style.display = match ? "" : "none";
+          if (match) visibleCount++;
         });
 
-        // Filter pencarian untuk seluruh item
-        function filterTools() {
-            const query = document.getElementById('searchInput').value.toLowerCase().trim();
-            const tools = document.querySelectorAll('.tool-item');
-            let visibleCount = 0;
+        document.getElementById("empty-state").style.display =
+          visibleCount === 0 ? "block" : "none";
+      }
 
-            tools.forEach(tool => {
-                const match = tool.innerText.toLowerCase().includes(query);
-                tool.style.display = match ? '' : 'none';
-                if (match) visibleCount++;
-            });
-
-            document.getElementById('empty-state').style.display = visibleCount === 0 ? 'block' : 'none';
-        }
-
-        // Copy text clipboard
-        function copySnippet(button, targetId) {
-            const text = document.getElementById(targetId).innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                const originalHtml = button.innerHTML;
-                button.innerHTML = `
+      // Copy text clipboard
+      function copySnippet(button, targetId) {
+        const text = document.getElementById(targetId).innerText;
+        navigator.clipboard
+          .writeText(text)
+          .then(() => {
+            const originalHtml = button.innerHTML;
+            button.innerHTML = `
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
                     <span>COPIED</span>
                 `;
-                button.classList.add('bg-zinc-950', 'text-white', 'border-zinc-950');
+            button.classList.add(
+              "bg-zinc-950",
+              "text-white",
+              "border-zinc-950",
+            );
 
-                setTimeout(() => {
-                    button.innerHTML = originalHtml;
-                    button.classList.remove('bg-zinc-950', 'text-white', 'border-zinc-950');
-                }, 1500);
-            }).catch(() => {
-                alert('Gagal menyalin perintah');
-            });
-        }
+            setTimeout(() => {
+              button.innerHTML = originalHtml;
+              button.classList.remove(
+                "bg-zinc-950",
+                "text-white",
+                "border-zinc-950",
+              );
+            }, 1500);
+          })
+          .catch(() => {
+            alert("Gagal menyalin perintah");
+          });
+      }
     </script>
-</body>
+  </body>
 </html>
